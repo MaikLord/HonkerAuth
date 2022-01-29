@@ -1,21 +1,65 @@
 {
-  "name": "honker-desktop",
-  "version": "0.1.0",
+  "name": "honker",
+  "version": "1.0.0",
+  "homepage": "./",
+  "main": "public/electron.js",
+  "build": {
+    "productName": "Honker",
+    "appId": "com.honker",
+    "target": "nsis",
+    "compression": "maximum",
+    "win": {
+      "icon": "./public/ms-icon-150x150.ico"
+    },
+    "nsis": {
+      "license": "license.txt",
+      "oneClick": false,
+      "allowToChangeInstallationDirectory": true,
+      "installerIcon": "build/ms-icon-150x150.ico",
+      "createDesktopShortcut": true,
+      "createStartMenuShortcut": true,
+      "shortcutName": "Honker App"
+    },
+    "files": [
+      "./build/**/*",
+      "./dist/**/*",
+      "./node_modules/**/*",
+      "./public/**/*",
+      "*.js"
+    ],
+    "directories": {
+      "buildResources": "public"
+    }
+  },
   "private": true,
   "dependencies": {
+    "@material-ui/core": "^4.12.3",
+    "@material-ui/icons": "^4.11.2",
     "@testing-library/jest-dom": "^5.16.1",
     "@testing-library/react": "^12.1.2",
     "@testing-library/user-event": "^13.5.0",
+    "add": "^2.0.6",
+    "concurrently": "^6.4.0",
+    "electron-is-dev": "^2.0.0",
+    "nodemon": "^2.0.15",
     "react": "^17.0.2",
     "react-dom": "^17.0.2",
-    "react-scripts": "5.0.0",
-    "web-vitals": "^2.1.4"
+    "react-router-dom": "^6.2.1",
+    "react-scripts": "^3.0.1",
+    "sass": "^1.45.0",
+    "styled-components": "^5.3.3",
+    "wait-on": "^6.0.0",
+    "web-vitals": "^2.1.2"
   },
   "scripts": {
     "start": "react-scripts start",
     "build": "react-scripts build",
+    "electron-start": "electron .",
     "test": "react-scripts test",
-    "eject": "react-scripts eject"
+    "eject": "react-scripts eject",
+    "electron": "electron-builder",
+    "release": "yarn react-build && electron-builder --publish=always",
+    "buildall": "yarn build && yarn electron"
   },
   "eslintConfig": {
     "extends": [
@@ -34,5 +78,9 @@
       "last 1 firefox version",
       "last 1 safari version"
     ]
+  },
+  "devDependencies": {
+    "electron": "^16.0.4",
+    "electron-builder": "^22.14.5"
   }
 }
